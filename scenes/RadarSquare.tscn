@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/RadarSquare.gd" type="Script" id=1]
+
+[node name="RadarSquare" type="ColorRect"]
+margin_right = 188.0
+margin_bottom = 100.0
+color = Color( 1, 0, 0, 0.376471 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+area_size = Vector2( 1920, 896 )
+
+[node name="TimerUpdate" type="Timer" parent="."]
+wait_time = 0.333
+autostart = true
+[connection signal="timeout" from="TimerUpdate" to="." method="_on_TimerUpdate_timeout"]

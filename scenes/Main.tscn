@@ -1,0 +1,174 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/Tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/CrateWood.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/BarrelBlack.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/BarricateMetal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/TreeGreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/OilSpillLarge.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/tileset.tres" type="TileSet" id=7]
+[ext_resource path="res://scenes/Tower.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=9]
+[ext_resource path="res://resources/Zone99heavy.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://scripts/Hud.gd" type="Script" id=11]
+[ext_resource path="res://scenes/RadarSquare.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scripts/RadarSquareTilemapCalc.gd" type="Script" id=13]
+[ext_resource path="res://scripts/RadarCircle.gd" type="Script" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 10 )
+
+[node name="Main" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -10
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 128, 128 )
+collision_layer = 64
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 0, 13, 0, 1, 8, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 8, 0, 7, 24, 0, 8, 8, 0, 9, 8, 0, 10, 8, 0, 11, 8, 0, 12, 8, 0, 13, 17, 0, 14, 1, 0, 65536, 4, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 4, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 37, 0, 65550, 33, 0, 131072, 4, 0, 131073, 0, 0, 131074, 13, 0, 131075, 17, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 9, 0, 131080, 0, 0, 131081, 0, 0, 131082, 33, 0, 131083, 33, 0, 131084, 33, 0, 131085, 6, 0, 131086, 2, 0, 196608, 4, 0, 196609, 13, 0, 196610, 25, 0, 196611, 21, 0, 196612, 24, 0, 196613, 20, 0, 196614, 8, 0, 196615, 9, 0, 196616, 8, 0, 196617, 38, 0, 196618, 10, 0, 196619, 22, 0, 196620, 10, 0, 196621, 18, 0, 196622, 2, 0, 262144, 4, 0, 262145, 4, 0, 262146, 0, 0, 262147, 0, 0, 262148, 21, 0, 262149, 8, 0, 262150, 17, 0, 262151, 4, 0, 262152, 0, 0, 262153, 28, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 6, 0, 262158, 2, 0, 327680, 4, 0, 327681, 21, 0, 327682, 8, 0, 327683, 8, 0, 327684, 8, 0, 327685, 8, 0, 327686, 25, 0, 327687, 4, 0, 327688, 0, 0, 327689, 28, 0, 327690, 2, 0, 327691, 6, 0, 327692, 2, 0, 327693, 6, 0, 327694, 2, 0, 393216, 21, 0, 393217, 8, 0, 393218, 8, 0, 393219, 8, 0, 393220, 8, 0, 393221, 8, 0, 393222, 8, 0, 393223, 20, 0, 393224, 8, 0, 393225, 38, 0, 393226, 10, 0, 393227, 22, 0, 393228, 10, 0, 393229, 22, 0, 393230, 3, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OilSpillLarge" parent="." instance=ExtResource( 6 )]
+position = Vector2( 946.437, 596.85 )
+
+[node name="OilSpillLarge2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 961.516, 561.134 )
+
+[node name="OilSpillLarge3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 986.916, 598.438 )
+
+[node name="Tank" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1258.11, 266.293 )
+body = 2
+barrel = 1
+
+[node name="Camera2D" type="Camera2D" parent="Tank"]
+position = Vector2( -2.51984, 0 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 896
+limit_smoothed = true
+script = ExtResource( 9 )
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="CrateWood" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 530.225, 430.226 )
+
+[node name="CrateWood2" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 562.317, 468.924 )
+
+[node name="CrateWood3" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 566.092, 431.169 )
+
+[node name="CrateWood4" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 698.575, 717.711 )
+
+[node name="CrateWood5" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 702.35, 679.956 )
+
+[node name="BarrelBlack" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 196.639, 491.682 )
+
+[node name="BarrelBlack3" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 184.985, 463.077 )
+
+[node name="BarrelBlack4" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 1357.6, 461.478 )
+
+[node name="BarrelBlack5" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 1345.95, 432.873 )
+
+[node name="BarrelBlack2" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 792.561, 270.964 )
+
+[node name="BarricateMetal" parent="Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 991.423, 178.44 )
+
+[node name="BarricateMetal2" parent="Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 960.708, 190.427 )
+
+[node name="BarricateMetal3" parent="Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 948.721, 220.393 )
+
+[node name="TreeGreen" parent="Obstacles" instance=ExtResource( 5 )]
+position = Vector2( 382.785, 403.231 )
+
+[node name="TreeGreen2" parent="Obstacles" instance=ExtResource( 5 )]
+position = Vector2( 491.664, 527.824 )
+
+[node name="TreeGreen3" parent="Obstacles" instance=ExtResource( 5 )]
+position = Vector2( 560.134, 335.883 )
+
+[node name="TreeGreen4" parent="Obstacles" instance=ExtResource( 5 )]
+position = Vector2( 1266.49, 362.792 )
+
+[node name="Towers" type="Node2D" parent="."]
+
+[node name="Tower" parent="Towers" instance=ExtResource( 8 )]
+position = Vector2( 885.691, 263.716 )
+rotation_inicial = 90.0
+life = 30
+
+[node name="Tower2" parent="Towers" instance=ExtResource( 8 )]
+position = Vector2( 876.712, 757.6 )
+rotation_inicial = 272.571
+type = 0
+
+[node name="Tower5" parent="Towers" instance=ExtResource( 8 )]
+position = Vector2( 1650.34, 236.244 )
+rotation_inicial = 180.0
+type = 0
+
+[node name="Tower3" parent="Towers" instance=ExtResource( 8 )]
+position = Vector2( 382.828, 472.494 )
+type = 0
+
+[node name="Tower4" parent="Towers" instance=ExtResource( 8 )]
+position = Vector2( 1635.5, 517.393 )
+rotation_inicial = 195.429
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
+
+[node name="RadarSquare" parent="Hud" instance=ExtResource( 12 )]
+margin_left = 824.0
+margin_top = 488.3
+margin_right = 1012.0
+margin_bottom = 588.3
+
+[node name="RadarSquareTilemapCalc" type="Node" parent="Hud/RadarSquare"]
+script = ExtResource( 13 )
+tilemap = NodePath("../../../TileMap")
+
+[node name="ScoreLabel" type="Label" parent="Hud"]
+margin_right = 1025.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "455444464768"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RadarCircle" type="Node2D" parent="Hud"]
+position = Vector2( 955.852, 421.136 )
+script = ExtResource( 14 )
+sensor_radius = 1000.0
+radius = 60.0
+color = Color( 0.0784314, 0.34902, 0.0784314, 0.4 )
+tank = NodePath("../../Tank")
+
+[node name="TimerUpdate" type="Timer" parent="Hud/RadarCircle"]
+wait_time = 0.333
+autostart = true
+[connection signal="timeout" from="Hud/RadarCircle/TimerUpdate" to="Hud/RadarCircle" method="_on_TimerUpdate_timeout"]

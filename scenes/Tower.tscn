@@ -1,0 +1,358 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://sprites/tower/towerDefense_tile228.png" type="Texture" id=1]
+[ext_resource path="res://sprites/tower/towerDefense_tile250.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Tower.gd" type="Script" id=3]
+[ext_resource path="res://sprites/tower/towerDefense_tile298.png" type="Texture" id=4]
+[ext_resource path="res://samples/projectil_hit.wav" type="AudioStream" id=5]
+[ext_resource path="res://sprites/smokeWhite1.png" type="Texture" id=6]
+[ext_resource path="res://scripts/WeekSpot.gd" type="Script" id=7]
+[ext_resource path="res://samples/tank_explosion.wav" type="AudioStream" id=8]
+[ext_resource path="res://sprites/explosion4.png" type="Texture" id=9]
+[ext_resource path="res://sprites/explosion2.png" type="Texture" id=10]
+[ext_resource path="res://sprites/explosion1.png" type="Texture" id=11]
+[ext_resource path="res://sprites/explosion5.png" type="Texture" id=12]
+[ext_resource path="res://sprites/explosion3.png" type="Texture" id=13]
+[ext_resource path="res://sprites/tower/towerDefense_tile021.png" type="Texture" id=14]
+[ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scripts/Cannon.gd" type="Script" id=16]
+[ext_resource path="res://sprites/tower/towerDefense_tile249.png" type="Texture" id=17]
+[ext_resource path="res://scripts/HOMECannon.gd" type="Script" id=18]
+[ext_resource path="res://samples/barrel_explosion.wav" type="AudioStream" id=19]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.2361
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.221154, 0.263266 ), 0.0, 0.27013, 0, 0, Vector2( 1, 0.990538 ), 0.661818, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fire:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 22.8055
+
+[sub_resource type="Animation" id=13]
+resource_name = "fire"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 0.241484 ),
+"update": 0,
+"values": [ Vector2( -23.04, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Smoke2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Smoke2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 28.6825
+
+[sub_resource type="Animation" id=17]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 12 ), null ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2.16, 2.16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Soot:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Soot:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Tower" type="StaticBody2D" groups=[
+"radar_entity",
+]]
+collision_layer = 4
+collision_mask = 2147483648
+script = ExtResource( 3 )
+life = 50
+type = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 23, -18.125, -23, -17.875, -23.0336, 9.57622, -15, 17.875, 14.625, 18.125, 23, 9.875 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="Sensor" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensor"]
+position = Vector2( 0, -0.471931 )
+shape = SubResource( 1 )
+
+[node name="HMGCannon" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 16 )
+
+[node name="Sprite" type="Sprite" parent="HMGCannon"]
+rotation = 1.5708
+texture = ExtResource( 2 )
+offset = Vector2( 0, -12.4119 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HMGCannon"]
+position = Vector2( 0, -3.56762 )
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="HMGCannon"]
+position = Vector2( 50.6608, 0 )
+
+[node name="RayCast2D" type="RayCast2D" parent="HMGCannon"]
+cast_to = Vector2( 250, 0 )
+
+[node name="Fire" type="Node2D" parent="HMGCannon"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 56.4873, 0 )
+
+[node name="Sprite" type="Sprite" parent="HMGCannon/Fire"]
+position = Vector2( 0, -7.433 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="Sprite2" type="Sprite" parent="HMGCannon/Fire"]
+position = Vector2( 0, 5.649 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="Smoke" type="Particles2D" parent="HMGCannon"]
+position = Vector2( 42.4264, 0 )
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 4
+local_coords = false
+process_material = SubResource( 7 )
+texture = ExtResource( 6 )
+
+[node name="ShootTimer" type="Timer" parent="HMGCannon"]
+wait_time = 0.6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HMGCannon"]
+stream = ExtResource( 5 )
+bus = "fx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HMGCannon"]
+anims/shoot = SubResource( 8 )
+
+[node name="HOMECannon" type="Area2D" parent="."]
+script = ExtResource( 18 )
+
+[node name="Sprite" type="Sprite" parent="HOMECannon"]
+position = Vector2( -23.04, 0 )
+rotation = 1.5708
+texture = ExtResource( 17 )
+offset = Vector2( -0.690104, -12.736 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HOMECannon"]
+shape = SubResource( 15 )
+
+[node name="Smoke2" type="Particles2D" parent="HOMECannon"]
+position = Vector2( 42.4264, 0 )
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+local_coords = false
+process_material = SubResource( 7 )
+texture = ExtResource( 6 )
+
+[node name="FireTimer" type="Timer" parent="HOMECannon"]
+wait_time = 3.0
+
+[node name="Position2D" type="Position2D" parent="HOMECannon"]
+position = Vector2( 55, 0 )
+
+[node name="AudioFire" type="AudioStreamPlayer" parent="HOMECannon"]
+stream = ExtResource( 19 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HOMECannon"]
+autoplay = "idle"
+anims/fire = SubResource( 13 )
+anims/idle = SubResource( 14 )
+
+[node name="WeekSpot" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeekSpot"]
+shape = SubResource( 16 )
+
+[node name="AudioDamage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "fx"
+
+[node name="AudioExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "fx"
+
+[node name="Explosion" type="Node2D" parent="."]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Explosion"]
+autoplay = "idle"
+anims/explosion = SubResource( 17 )
+anims/idle = SubResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Explosion"]
+texture = ExtResource( 11 )
+
+[node name="Soot" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.72, 0.72 )
+texture = ExtResource( 14 )
+
+[node name="HPNode" type="Node2D" parent="."]
+position = Vector2( -50, -50 )
+z_index = 100
+
+[node name="HPBar" parent="HPNode" instance=ExtResource( 15 )]
+margin_right = 100.0
+margin_bottom = 10.0
+[connection signal="body_entered" from="Sensor" to="." method="_on_Sensor_body_entered"]
+[connection signal="body_exited" from="Sensor" to="." method="_on_Sensor_body_exited"]
+[connection signal="timeout" from="HMGCannon/ShootTimer" to="HMGCannon" method="_on_ShootTimer_timeout"]
+[connection signal="timeout" from="HOMECannon/FireTimer" to="HOMECannon" method="_on_FireTimer_timeout"]
+[connection signal="damage" from="WeekSpot" to="." method="_on_WeekSpot_damage"]
